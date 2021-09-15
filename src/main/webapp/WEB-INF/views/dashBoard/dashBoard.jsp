@@ -324,6 +324,8 @@
 													}
 												},
 												credits : {
+													
+													
 													enabled : false
 												},
 

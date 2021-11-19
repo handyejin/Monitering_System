@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -28,135 +29,116 @@
 	color: #666666;
 	font-weight: bolder;
 }
-
 #row_card {
 	height: 40%;
 }
-
 #tbody {
 	height: 420px;
 }
-
 #dataTable {
 	margin-left: 30px;
 	width: 27%;
 	height: 550px;
 	/* height:300px; */
 }
-
+#table-responsive2{
+height: 14rem;}
 .chart-container {
 	width: 300px;
 	height: 200px;
 	float: left;
 	background: #f8f9fc;
 }
-
 .highcharts-background {
 	background: #f8f9fc;
 }
-
 #line_chart {
 	width: 1200px;
 	height: 200px;
 }
-
 #server_info {
 	width: 400px;
 }
-
 #alarm_info {
 	width: 400px;
 }
-
 #figure_graph {
 	float: left;
 	width: 1100px;
 	/* height: 100px; */
 }
-
 #core0_text {
 	font-size: 18px;
 }
-
 #core0_div {
 	font-size: 30px;
 }
-
 #core1_text {
 	font-size: 18px;
 }
-
 #core1_div {
 	font-size: 30px;
 }
-
 #core2_text {
 	font-size: 18px;
 }
-
 #core2_div {
 	font-size: 30px;
 }
-
 #core3_text {
 	font-size: 18px;
 }
-
 #core3_div {
 	font-size: 30px;
 }
-
 #level {
 	width: 80px;
 }
-
+#line_chart{
+width:100%}
 #card_container {
 	z-index: 2; width : 70%;
 	height: 10%;
 	width: 70%;
 }
-
 #card_container1 {
-	width: 70%;
-	height: 10%;
+	width: 50%;
+	height: 15%;
 	bottom: 290px;
 }
-
 #nwusernum_div {
 	z-index: 1; width : 50px;
 	height: 50px;
 	background: white;
 	width: 50px;
 }
+#dataTable2{
+margin-left:1rem;
+height:15.5rem;
+bottom:18rem;
+width:22rem}
 </style>
 <script type="text/javascript">
 	var data1 = "";
 	var sock = new SockJS('http://localhost:8080/handler');
 	var coreNameArr = [];
 	var coreArr = [];
-
 	sock.onopen = onOpen;
 	sock.onmessage = onMessage;
 	sock.onclose = onClose;
 	function onClose() {
 		sock.close();
 	}
-
 	function onOpen() {
 		console.log("client:connect");
 		sock.send("hello, server!");
-
 	};
-
 	var receiveCount = 0;
 	var i = -10;
 	function onMessage(msg) {
-
 		strdata = msg.data;
 		list = JSON.parse(strdata);
-
 		for (var i = 0; i < 4; i++) {
-
 			if (list[i]['corename'] == "0") {
 				coreNameArr[0] = list[i]['corename'];
 				coreArr[0] = list[i]['coreusage'];
@@ -170,20 +152,16 @@
 				coreNameArr[3] = list[i]['corename'];
 				coreArr[3] = list[i]['coreusage'];
 			}
-
 		}
-
 		/* $("#core0_div").text(coreArr[0]).style.fontSize="30px"; */
 		$("#core0_div").text(coreArr[0])
 		$("#core1_div").text(coreArr[1]);
 		$("#core2_div").text(coreArr[2]);
 		$("#core3_div").text(coreArr[3]);
-
 		document.getElementById('core0_bar').style.width = coreArr[0] + '%';
 		document.getElementById('core1_bar').style.width = coreArr[1] + "%";
 		document.getElementById('core2_bar').style.width = coreArr[2] + '%';
 		document.getElementById('core3_bar').style.width = coreArr[3] + '%';
-
 		if (receiveCount == 0) {
 			chartCpu = Highcharts
 					.chart(
@@ -201,14 +179,11 @@
 															'font-weight' : "bold"
 														},
 														text : 'CPU'
-
 													}
 												},
-
 												credits : {
 													enabled : false
 												},
-
 												series : [ {
 													name : 'CPU',
 													data : [ list[0]['cpuusage'] ],
@@ -222,9 +197,7 @@
 														valueSuffix : '%'
 													}
 												} ]
-
 											}));
-
 			chartMem = Highcharts
 					.chart(
 							'container-mem',
@@ -246,11 +219,9 @@
 												credits : {
 													enabled : false
 												},
-
 												series : [ {
 													name : 'Mem',
 													data : [ list[0]['memusage'] ],
-
 													dataLabels : {
 														format : '<div style="text-align:center">'
 																+ '<span style="font-size:25px">{y}</span><br/>'
@@ -261,9 +232,7 @@
 														valueSuffix : '%'
 													}
 												} ]
-
 											}));
-
 			chartDisk = Highcharts
 					.chart(
 							'container-disk',
@@ -285,10 +254,8 @@
 												credits : {
 													enabled : false
 												},
-
 												series : [ {
 													name : 'Disk',
-
 													data : [ list[0]['diskusage'] ],
 													dataLabels : {
 														format : '<div style="text-align:center">'
@@ -302,9 +269,7 @@
 														valueSuffix : ' %'
 													}
 												} ]
-
 											}));
-
 			var chartNw = Highcharts
 					.chart(
 							'container-nw',
@@ -314,7 +279,7 @@
 											{
 												yAxis : {
 													min : 0,
-													max : 5000000000,
+													max : 100,
 													title : {
 														style : {
 															fontSize : '20px',
@@ -328,15 +293,14 @@
 													
 													enabled : false
 												},
-
 												series : [ {
 													name : 'Network',
-													data : [ list[0]['nwusage'] ],
+													data : [ list[0]['netuser'] ],
 													dataLabels : {
 														format : '<div style="text-align:center">'
-																+ '<span style="font-size:15px">{y:.1f}</span><br/>'
+																+ '<span style="font-size:30px">{y:.f}</span><br/>'
 																+ '<span style="font-size:12px;opacity:0.4">'
-																+ '%'
+																/* + '%' */
 																+ '</span>'
 																+ '</div>'
 													},
@@ -344,18 +308,14 @@
 														valueSuffix : '%'
 													}
 												} ]
-
 											}));
 		}
 		;
-
 		if (receiveCount == 0) {
-
 			Highcharts
 					.chart(
 							'line_chart',
 							{
-
 								chart : {
 									type : 'spline',
 									animation : Highcharts.svg,
@@ -365,22 +325,18 @@
 											var series = this.series[0];
 											setInterval(
 													function() {
-
 														var x = (new Date())
 																.getTime(), y = list[0]['cpuusage'];
 														series.addPoint(
 																[ x, y ], true,
 																true);
-
 													}, 1000);
 										}
 									}
 								},
-
 								time : {
 									useUTC : false
 								},
-
 								title : {
 									style : {
 										fontSize : '20px',
@@ -388,7 +344,6 @@
 									},
 									text : 'cpu usage'
 								},
-
 								accessibility : {
 									announceNewData : {
 										enabled : true,
@@ -403,12 +358,10 @@
 										}
 									}
 								},
-
 								xAxis : {
 									type : 'datetime',
 									tickPixelInterval : 150
 								},
-
 								yAxis : {
 									title : {
 										text : 'Value'
@@ -419,20 +372,16 @@
 										color : '#808080'
 									} ]
 								},
-
 								tooltip : {
 									headerFormat : '<b>{series.name}</b><br/>',
 									pointFormat : '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}'
 								},
-
 								legend : {
 									enabled : false
 								},
-
 								exporting : {
 									enabled : false
 								},
-
 								series : [ {
 									name : 'cpu usage',
 									data : (function() {
@@ -440,24 +389,19 @@
 										var data = [], time = (new Date())
 												.getTime();
 										var count = 0;
-
 										for (i = -10; i <= 0; i += 1) {
 											data.push({
 												x : time + i * 1000,
 												y : list[0]['cpuusage']
 											});
-
 										}
-
 										return data;
 									}())
 								} ]
 							})
 		}
 		;
-
 		receiveCount++;
-
 	};
 </script>
 
@@ -626,7 +570,6 @@
 			</div>
 			<!-- 	<div class="card shadow mb-4" id="card_container">
 					<div class="card-body">
-
 						<figure class="highcharts_figure1" id="figure_graph1">
 							<div id="line_chart" class="graph"></div>
 						</figure>
@@ -690,6 +633,33 @@
 					</figure>
 				</div>
 			</div>
+				<div id="dataTable2" class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">포트 정보</h6>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive" id="table-responsive2">
+						<table class="table table-bordered" width="100%" cellspacing="0">
+							<c:forEach items="${list}" var="result">
+								<tbody id="tbody2">
+									<tr>
+										<td class="title_table">포트 사용자수</td>
+										<td><c:out value="${result.portuser}" /></td>
+
+									</tr>
+									<tr>
+										<td class="title_table">포트 번호 </td>
+										<td><c:out value="${result.portnum}" /></td>
+
+									</tr>
+						
+								</tbody>
+							</c:forEach>
+
+						</table>
+					</div>
+				</div>
+			</div>
 
 			<!-- </div> -->
 		</div>
@@ -699,9 +669,7 @@
 			chart : {
 				type : 'solidgauge'
 			},
-
 			title : null,
-
 			pane : {
 				center : [ '50%', '85%' ],
 				size : '140%',
@@ -715,15 +683,12 @@
 					shape : 'arc'
 				}
 			},
-
 			exporting : {
 				enabled : false
 			},
-
 			tooltip : {
 				enabled : false
 			},
-
 			// the value axis
 			yAxis : {
 				stops : [ [ 0.1, '#55BF3B' ], // green
@@ -741,7 +706,6 @@
 					y : 16
 				}
 			},
-
 			plotOptions : {
 				solidgauge : {
 					dataLabels : {
@@ -752,46 +716,36 @@
 				}
 			}
 		};
-
 		setInterval(function() {
 			var point;
-
 			if (receiveCount > 0) {
 				//cpu 사용량
 				if (chartCpu) {
 					point = chartCpu.series[0].points[0];
 					point.update(list[0]['cpuusage']);
-
 				}
-
 				//메모리 사용량
 				if (chartMem) {
 					point = chartMem.series[0].points[0];
 					point.update(list[0]['memusage']);
 				}
-
 				//디스크 사용량
 				if (chartDisk) {
 					point = chartDisk.series[0].points[0];
 					point.update(list[0]['diskusage']);
 				}
-
 				/*    if (chartRpm) {
 				       point = chartRpm.series[0].points[0];
 				       var inc = Math.random() - 0.5;
 				       var newVal = point.y + inc;
-
 				       if (newVal < 0 || newVal > 5) {
 				           newVal = point.y - inc;
 				       }
-
 				       point.update(newVal);
 				   } */
 			}
-
 		}, 3000);
 	</script>
 </body>
 </html>
-
 

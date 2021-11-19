@@ -68,7 +68,7 @@
 		 <![CDATA[
 				select user.id, user.email, threshold.ip, Serverusage.cpuusage as 'usage', Serverusage.date,user.hp
 		from user, Serverusage,threshold
-		where threshold.id="1111" and threshold.cpu_check="checked" and threshold.cpu_warning <= (select cpuusage
+		where threshold.id="2222" and threshold.cpu_check="checked" and threshold.cpu_warning <= (select cpuusage
 		from Serverusage
 		order by date
 		desc limit 1)
@@ -83,7 +83,7 @@
 	<![CDATA[
 			select user.id, user.email, user.hp, threshold.ip, Serverusage.cpuusage as 'usage', Serverusage.date
 		from user, Serverusage,threshold
-		where threshold.id="1111" and threshold.cpu_check="checked" and threshold.cpu_danger <= (select cpuusage
+		where threshold.id="2222" and threshold.cpu_check="checked" and threshold.cpu_danger <= (select cpuusage
 		from Serverusage
 		order by date
 		desc limit 1)
@@ -96,7 +96,7 @@
 	<![CDATA[
 			select user.id, user.email, user.hp, threshold.ip, Serverusage.memusage as 'usage', Serverusage.date
 		from user, Serverusage,threshold
-		where threshold.id="1111" and threshold.mem_check="checked" and threshold.mem_danger <= (select memusage
+		where threshold.id="2222" and threshold.mem_check="checked" and threshold.mem_danger <= (select memusage
 		from Serverusage
 		order by date
 		desc limit 1)
@@ -108,7 +108,7 @@
 	<![CDATA[
 				select user.id, user.email, user.hp, threshold.ip, Serverusage.memusage as 'usage', Serverusage.date
 		from user, Serverusage,threshold
-		where threshold.id="1111" and threshold.mem_check="checked" and threshold.mem_warning <= (select memusage
+		where threshold.id="2222" and threshold.mem_check="checked" and threshold.mem_warning <= (select memusage
 		from Serverusage
 		order by date
 		desc limit 1)
@@ -120,7 +120,7 @@
 	<![CDATA[
 				select user.id, user.email, user.hp, threshold.ip, Serverusage.diskusage as 'usage', Serverusage.date
 		from user, Serverusage,threshold
-		where threshold.id="1111" and threshold.disk_check="checked" and threshold.disk_warning <= (select diskusage
+		where threshold.id="2222" and threshold.disk_check="checked" and threshold.disk_warning <= (select diskusage
 		from Serverusage
 		order by date
 		desc limit 1)
@@ -132,7 +132,7 @@
 	<![CDATA[
 			select user.id, user.email, user.hp, threshold.ip, Serverusage.diskusage as 'usage', Serverusage.date
 		from user, Serverusage,threshold
-		where threshold.id="1111" and threshold.disk_check="checked" and threshold.disk_danger <= (select diskusage
+		where threshold.id="2222" and threshold.disk_check="checked" and threshold.disk_danger <= (select diskusage
 		from Serverusage
 		order by date
 		desc limit 1)
@@ -144,7 +144,7 @@
 	<![CDATA[
 				select user.id, user.email, user.hp, threshold.ip, Serverusage.nwusage as 'usage', Serverusage.date
 		from user, Serverusage,threshold
-		where threshold.id="1111" and threshold.nw_check="checked" and threshold.nw_danger <= (select nwusage
+		where threshold.id="2222" and threshold.nw_check="checked" and threshold.nw_danger <= (select nwusage
 		from Serverusage
 		order by date
 		desc limit 1)
@@ -159,7 +159,7 @@
 <![CDATA[
 		select user.id, user.email, user.hp, threshold.ip, Serverusage.nwusage as 'usage', Serverusage.date
 		from user, Serverusage,threshold
-		where threshold.id="1111" and threshold.nw_check="checked" and threshold.nw_warning <= (select nwusage
+		where threshold.id="2222" and threshold.nw_check="checked" and threshold.nw_warning <= (select nwusage
 		from Serverusage
 		order by date
 		desc limit 1)

@@ -39,7 +39,7 @@ public class ServerDAOImpl
 
     public int check_ip(String ip)
     {
-        int check_ip = ((Integer)session.selectOne(NameSpace+"ServerMapper.check_ip", ip)).intValue();
+        int check_ip = ((Integer)session.selectOne(NameSpace+"check_ip", ip)).intValue();
         return check_ip;
     }
 
@@ -53,8 +53,8 @@ public class ServerDAOImpl
         String public_ip = dto.getPublic_ip();
         String username = dto.getUsername();
         String pw = dto.getPw();
-        String keyname = "C:\\Users\\sonye\\adminserver.pem";
-        String publicDNS = "ec2-3-36-184-127.ap-northeast-2.compute.amazonaws.com";
+        String keyname = "C:\\Users\\sonye\\adminserver1.pem";
+        String publicDNS = "ec2-13-125-192-224.ap-northeast-2.compute.amazonaws.com";
         session.insert(NameSpace+"insert_server", dto);
         try
         {

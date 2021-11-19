@@ -77,13 +77,15 @@ public class UsageDTO
     private float memusage;
     private float diskusage;
     private float nwusage;
-    private int netusernum;
-    public int getNetusernum() {
-		return netusernum;
+    private int netuser;
+   
+
+	public int getNetuser() {
+		return netuser;
 	}
 
-	public void setNetusernum(int netusernum) {
-		this.netusernum = netusernum;
+	public void setNetuser(int netuser) {
+		this.netuser = netuser;
 	}
 
 	private String corename;

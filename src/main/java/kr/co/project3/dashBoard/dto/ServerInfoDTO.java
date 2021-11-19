@@ -80,11 +80,21 @@ public class ServerInfoDTO
     private String version;
     private int corenum;
     private int portuser;
+    
+    private int portnum;
 	public int getPortuser() {
 		return portuser;
 	}
 
 	public void setPortuser(int portuser) {
 		this.portuser = portuser;
+	}
+
+	public int getPortnum() {
+		return portnum;
+	}
+
+	public void setPortnum(int portnum) {
+		this.portnum = portnum;
 	}
 }

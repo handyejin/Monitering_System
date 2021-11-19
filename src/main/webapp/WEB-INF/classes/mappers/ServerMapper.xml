@@ -39,11 +39,12 @@
 	</select>
 
 	<select id="select_info" resultType="ServerInfoDTO">
-		select info.ip, hostname, hw,osver, version, corenum
+select info.ip, hostname, hw,osver, version, corenum,portuser,portnum
 		from
-		info,UserServer
+		info,UserServer, portdata
 		where UserServer.id =#{id} and info.ip =
-		UserServer.ip;
+		UserServer.ip
+        limit 1;
 	</select>
 
 

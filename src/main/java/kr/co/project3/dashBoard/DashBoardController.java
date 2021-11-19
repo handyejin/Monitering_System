@@ -47,6 +47,7 @@ public class DashBoardController {
 			for (int i = 0; i < list.size(); i++) {
 				
 				System.out.println(((ServerInfoDTO) list.get(i)).getPortuser());
+				System.out.println(((ServerInfoDTO) list.get(i)).getPortnum());
 				System.out.println(((ServerInfoDTO) list.get(i)).getIp());
 				System.out.println(((ServerInfoDTO) list.get(i)).getHostname());
 				

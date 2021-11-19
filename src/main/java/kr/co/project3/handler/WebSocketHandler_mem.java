@@ -90,7 +90,7 @@ public class WebSocketHandler_mem extends TextWebSocketHandler
             }
 ;
             Timer timer = new Timer(true);
-            timer.schedule(task, 0L, 30000L);
+            timer.schedule(task, 0L, 1000L);
         }
     }
 

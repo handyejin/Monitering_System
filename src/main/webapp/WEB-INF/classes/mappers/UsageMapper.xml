@@ -10,11 +10,11 @@
 
 	<select id="usage_select" resultType="UsageDTO">
 		select cpuusage,
-		memusage,diskusage, netdata1.netusernum
+		memusage,diskusage,netuser
 		from Serverusage,
-		UserServer,netdata1
+		UserServer
 		where
-		UserServer.id = 2222 and UserServer.ip =
+		UserServer.id = #{id} and UserServer.ip =
 		Serverusage.ip
 		order by Serverusage.date desc
 		limit 1;

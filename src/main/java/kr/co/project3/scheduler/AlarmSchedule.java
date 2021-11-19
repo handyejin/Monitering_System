@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import com.google.inject.Inject;
 
@@ -33,7 +33,7 @@ public class AlarmSchedule {
 	@Autowired
 	private alarmService service;
 
-	@Inject
+	@Autowired
 	JavaMailSender mailSender;
 
 	public static boolean cpu_alert = false;
@@ -53,6 +53,7 @@ public class AlarmSchedule {
 		coolsms = new Message(api_key, api_secret);
 	}
 
+	@Scheduled(fixedDelay=3000)
 	public void scheduleFixedDelayTask() throws IOException {
 		System.out.println("\uC2A4\uCF00\uC904\uB7EC \uC2DC\uC791");
 		HashMap<String, String> params = new HashMap<String, String>();
@@ -123,7 +124,7 @@ public class AlarmSchedule {
 			}
 		}
 	}
-
+	@Scheduled(fixedDelay=3000)
 	public void mem_scheduled() throws IOException {
 		HashMap<String, String> params = new HashMap<String, String>();
 		List<AlarmSettingDTO> check = service.mem_over_check();
@@ -185,7 +186,7 @@ public class AlarmSchedule {
 			}
 		}
 	}
-
+	@Scheduled(fixedDelay=3000)
 	public void disk_scheduled() throws IOException {
 		System.out.println(
 				(new StringBuilder("\uD604\uC7AC\uC2DC\uAC04:")).append(System.currentTimeMillis() / 1000L).toString());
@@ -251,7 +252,7 @@ public class AlarmSchedule {
 			}
 		}
 	}
-
+	@Scheduled(fixedDelay=3000)
 	public void nw_scheduled() throws IOException {
 		HashMap<String, String> params = new HashMap<String, String>();
 		List<AlarmSettingDTO> check = service.nw_over_check();
